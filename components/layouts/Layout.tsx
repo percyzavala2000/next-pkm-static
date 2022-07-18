@@ -1,19 +1,18 @@
+import React, {FC, Fragment, useState} from "react";
 import Head from 'next/head'
-import React, {FC, Fragment} from "react";
 import {Navbar} from '../ui';
 
 
-const origin=(typeof window !== 'undefined')?window.location.origin:'';
+const origin=(typeof window === 'undefined')? "":window.location ;
 
 type PropsChildren = {
-    children?: React.ReactNode;
-    title: string;
+  children?: React.ReactNode;
+  title: string;
 };
 
 export const Layout : FC < PropsChildren > = ({children, title}) => {
-
-  console.log(origin);
   
+
     return (
         <Fragment>
             <Head>

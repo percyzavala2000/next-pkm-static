@@ -1,7 +1,6 @@
 import { Container, Text,Image } from '@nextui-org/react';
 
 
-
 export const NoFvoritos = () => {
   return (
     <Container css={{
@@ -15,6 +14,6 @@ export const NoFvoritos = () => {
     }}  >
 
        <Text>No hay Favoritos</Text> 
-       <Image src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/132.svg" width={250} height ={250} css={{opacity:0.1}}  />
+       <Image src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/132.svg" width={100} height ={100} css={{opacity:0.1}}  />
     </Container>
 )}

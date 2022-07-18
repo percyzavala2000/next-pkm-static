@@ -93,7 +93,7 @@ const PokemonByNamePage:NextPage<Props> = ({pokemon}) => {
 
 
 export const getStaticPaths: GetStaticPaths = async (ctx) => {
-  console.log("getStaticPaths llamar hasta aqui", ctx);
+  
   
   const { data } = await  pokeApi.get < Pokemon> ('/pokemon?limit=151');
 
@@ -104,7 +104,7 @@ export const getStaticPaths: GetStaticPaths = async (ctx) => {
       },
     })),
 
-    fallback: false,
+    fallback: "blocking",
   }
 }
 
@@ -112,11 +112,23 @@ export const getStaticPaths: GetStaticPaths = async (ctx) => {
 export const getStaticProps: GetStaticProps = async({params}) => {
 
 const { name } = params as { name: string };
+const pokemon = await getPokemonInfo(name);
+
+if (!pokemon) {
+  return {
+    redirect: {
+      destination: "/",
+      permanent: false,
+    },
+  };
+}
+
 
 return {
   props: {
-    pokemon: await getPokemonInfo(name),
+    pokemon: pokemon,
   },
+  revalidate: 86400,
 };
 
 }
